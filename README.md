@@ -95,7 +95,7 @@ $ kobweb run
 1. Then export the project using:
 
 ```bash
-kobweb export
+kobweb export --layout static
 ```
 
 ### Tips & Tricks
