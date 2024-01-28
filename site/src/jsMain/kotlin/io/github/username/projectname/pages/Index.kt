@@ -1,18 +1,70 @@
 package io.github.username.projectname.pages
 
-import androidx.compose.runtime.*
-import com.varabyte.kobweb.compose.foundation.layout.Box
+import androidx.compose.runtime.Composable
+import io.github.username.projectname.Config
+import io.github.username.projectname.components.widgets.ThemeChangeButton
+import com.varabyte.kobweb.compose.foundation.layout.Arrangement
+import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxHeight
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.core.Page
-import org.jetbrains.compose.web.dom.Text
+import com.varabyte.kobweb.silk.components.layout.SimpleGrid
+import com.varabyte.kobweb.silk.components.style.breakpoint.ResponsiveValues
+import io.github.username.projectname.components.sections.*
 
 @Page
 @Composable
 fun HomePage() {
-    // TODO: Replace the following with your own content
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text("THIS PAGE INTENTIONALLY LEFT BLANK")
+    ThemeChangeButton()
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        // Header.
+        HeaderSection()
+
+        // Site contents.
+        val showVideo = Config.Video.SHOW_VIDEO
+        SimpleGrid(
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+                .fillMaxHeight().fillMaxWidth(), // TODO: Is this necessary?
+            numColumns = ResponsiveValues(
+                base = if (showVideo) 1 else 1,
+                sm = 1,
+                md = 1,
+                lg = if (showVideo) 2 else 1,
+                xl = if (showVideo) 2 else 1
+            )
+        ) {
+            if (showVideo) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    VideoSection()
+                }
+            }
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                AboutMe()
+            }
+        }
+
+        SoftwareAndSkills()
+        RepoSection()
+
+        // Footer.
+        FooterSection()
     }
 }
