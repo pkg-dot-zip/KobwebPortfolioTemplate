@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  [![Stars](https://img.shields.io/github/stars/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/PaiKobwebPortfolioTemplaterTripleAndUp/stargazers)
+  [![Stars](https://img.shields.io/github/stars/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/stargazers)
   [![GitHub Issues](https://img.shields.io/github/issues/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/issues)
   [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/pulls)
   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
