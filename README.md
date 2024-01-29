@@ -64,6 +64,7 @@ Repositories Page Example
 
 ## 🎈 Usage <a name="usage"></a>
 ### Getting started
+1. Install the Kobweb binary. Click [here](https://github.com/varabyte/kobweb?tab=readme-ov-file#install-the-kobweb-binary) to see how.
 1. Open the project in [IntelliJ](https://www.jetbrains.com/idea/) (or navigate to project folder in cmd).
 1. Open the Terminal tab at the bottom of your screen.
 1. Type the following:
