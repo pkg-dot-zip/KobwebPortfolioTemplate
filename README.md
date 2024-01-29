@@ -118,6 +118,7 @@ If you want to create your own pages, or change the layout, these Chrome Extensi
 - [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) -
 Kotlin multiplatform / multi-format serialization used for JSON deserialization
 - [GitHub REST API](https://docs.github.com/en/rest?apiVersion=2022-11-28) - Used to retrieve data from GitHub
+- [QR Code API](https://goqr.me/api/) - QR code generator web API used for QR Code widget
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@OnsPetruske](https://github.com/pkg-dot-zip) - Idea & Initial work.
