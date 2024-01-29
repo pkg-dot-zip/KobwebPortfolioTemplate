@@ -1,5 +1,6 @@
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import kotlinx.html.link
+import kotlinx.html.script
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -47,6 +48,8 @@ kobweb {
                     href = "https://fonts.googleapis.com/css?family=Major+Mono+Display",
                     rel = "stylesheet"
                 )
+
+                script(type = "text/javascript", src = "https://platform.linkedin.com/badges/js/profile.js"){}
             }
 
             description.set("Powered by Kobweb")
