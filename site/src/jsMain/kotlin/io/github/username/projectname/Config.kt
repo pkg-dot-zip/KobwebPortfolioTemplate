@@ -14,7 +14,7 @@ object Config {
     const val SITE_NAME = "my-portfolio"    // Site name. Shown at the top of the site and next to the logo.
     val DEFAULT_COLOR = ColorMode.DARK      // The color the site will have upon visiting.
 
-    const val PUT_QR_CODE_IN_FOOTER = true
+    const val PUT_QR_CODE_IN_FOOTER = false
 
     // Theme Button.
     const val IS_THEME_BUTTON_ROUND = true  // Button is round on true, if not it'll be square.
