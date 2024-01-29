@@ -28,7 +28,7 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 
 
-// FROM: https://github.com/binayshaw7777/Kotfolio
+// Edited, but original from: https://github.com/binayshaw7777/Kotfolio
 
 @Composable
 fun FooterSection(
