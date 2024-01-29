@@ -13,6 +13,8 @@ object Config {
     const val IS_DEBUGGING = true           // Use this when developing the site.
     const val SITE_NAME = "my-portfolio"    // Site name. Shown at the top of the site and next to the logo.
     val DEFAULT_COLOR = ColorMode.DARK      // The color the site will have upon visiting.
+    const val FULL_NAME: String =
+        "John Doe" // Put your full name here, or if you're not comfortable with that, your online pseudonym.
 
     const val PUT_QR_CODE_IN_FOOTER = false
 
@@ -92,7 +94,7 @@ object Config {
         // Your socials that will be linked to and/or data will be pulled from.
         const val MAIL = "your-mail@gmail.com"          // Used in footer for link.
         const val SITE_URL = "https://github.com/"      // Used in footer for QR Code.
-        const val LINKEDIN_USERNAME = ""                // Used in footer for link.
+        const val LINKEDIN_USERNAME = "williamhgates"   // Used in footer for link.
         const val GITHUB_USERNAME = "varabyte"          // Used in footer for link & for GitHub API.
         const val TWITTER_USERNAME = ""                 // Used in footer for link.
 
@@ -159,9 +161,18 @@ object Config {
         // Programming language you are proficient in.
         private val PROGRAMMING_LANGUAGES: Array<LinkableImage> =
             arrayOf(
-                LinkableImage(Consts.ProgrammingLangUrl.PROGRAMMING_LANGUAGE_1_URL, Res.Image.Skill.PROGRAMMING_LANGUAGE_1_LOGO),
-                LinkableImage(Consts.ProgrammingLangUrl.PROGRAMMING_LANGUAGE_2_URL, Res.Image.Skill.PROGRAMMING_LANGUAGE_2_LOGO),
-                LinkableImage(Consts.ProgrammingLangUrl.PROGRAMMING_LANGUAGE_3_URL, Res.Image.Skill.PROGRAMMING_LANGUAGE_3_LOGO),
+                LinkableImage(
+                    Consts.ProgrammingLangUrl.PROGRAMMING_LANGUAGE_1_URL,
+                    Res.Image.Skill.PROGRAMMING_LANGUAGE_1_LOGO
+                ),
+                LinkableImage(
+                    Consts.ProgrammingLangUrl.PROGRAMMING_LANGUAGE_2_URL,
+                    Res.Image.Skill.PROGRAMMING_LANGUAGE_2_LOGO
+                ),
+                LinkableImage(
+                    Consts.ProgrammingLangUrl.PROGRAMMING_LANGUAGE_3_URL,
+                    Res.Image.Skill.PROGRAMMING_LANGUAGE_3_LOGO
+                ),
             )
     }
 }
