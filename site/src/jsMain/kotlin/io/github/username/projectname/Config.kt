@@ -14,6 +14,8 @@ object Config {
     const val SITE_NAME = "my-portfolio"    // Site name. Shown at the top of the site and next to the logo.
     val DEFAULT_COLOR = ColorMode.DARK      // The color the site will have upon visiting.
 
+    const val PUT_QR_CODE_IN_FOOTER = true
+
     // Theme Button.
     const val IS_THEME_BUTTON_ROUND = true  // Button is round on true, if not it'll be square.
 
@@ -89,6 +91,7 @@ object Config {
     object Socials {
         // Your socials that will be linked to and/or data will be pulled from.
         const val MAIL = "your-mail@gmail.com"          // Used in footer for link.
+        const val SITE_URL = "https://github.com/"      // Used in footer for QR Code.
         const val LINKEDIN_USERNAME = ""                // Used in footer for link.
         const val GITHUB_USERNAME = "varabyte"          // Used in footer for link & for GitHub API.
         const val TWITTER_USERNAME = ""                 // Used in footer for link.

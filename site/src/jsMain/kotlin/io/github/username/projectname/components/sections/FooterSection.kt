@@ -24,6 +24,7 @@ import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.components.widgets.QRCode
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 
@@ -83,6 +84,7 @@ private fun FooterContent(
                     }
                     Spacer()
                     addSocialIconButtons(ctx)
+                    if (Config.PUT_QR_CODE_IN_FOOTER) QRCode(modifier = Modifier.fillMaxSize(10.percent))
                 }
             } else {
                 Column(
@@ -95,6 +97,7 @@ private fun FooterContent(
                     }
                     Spacer()
                     addSocialIconButtons(ctx, Modifier.margin(top = 2.cssRem))
+                    if (Config.PUT_QR_CODE_IN_FOOTER) QRCode(modifier = Modifier.margin(top = 2.cssRem).fillMaxSize(100.div(3).percent))
                 }
             }
         }
