@@ -3,10 +3,6 @@ package io.github.username.projectname.components.sections
 import AppearanceAwareImage
 import IconButtonNoHover
 import androidx.compose.runtime.*
-import io.github.username.projectname.Config
-import io.github.username.projectname.Consts
-import io.github.username.projectname.Res
-import io.github.username.projectname.util.FontHandler
 import com.varabyte.kobweb.compose.foundation.layout.*
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
@@ -24,7 +20,11 @@ import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.Config
+import io.github.username.projectname.Consts
+import io.github.username.projectname.Res
 import io.github.username.projectname.components.widgets.QRCode
+import io.github.username.projectname.util.FontHandler
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 
@@ -97,7 +97,9 @@ private fun FooterContent(
                     }
                     Spacer()
                     addSocialIconButtons(ctx, Modifier.margin(top = 2.cssRem))
-                    if (Config.PUT_QR_CODE_IN_FOOTER) QRCode(modifier = Modifier.margin(top = 2.cssRem).fillMaxSize(100.div(3).percent))
+                    if (Config.PUT_QR_CODE_IN_FOOTER) QRCode(
+                        modifier = Modifier.margin(top = 2.cssRem).fillMaxSize(100.div(3).percent)
+                    )
                 }
             }
         }

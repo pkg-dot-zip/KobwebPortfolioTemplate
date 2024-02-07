@@ -1,11 +1,6 @@
 package io.github.username.projectname.components.sections
 
 import androidx.compose.runtime.*
-import io.github.username.projectname.Config
-import io.github.username.projectname.components.widgets.RepoImageFull
-import io.github.username.projectname.util.FontHandler
-import io.github.username.projectname.util.github.RepoHandler
-import io.github.username.projectname.util.github.Repository
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
@@ -22,6 +17,11 @@ import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.Config
+import io.github.username.projectname.components.widgets.RepoImageFull
+import io.github.username.projectname.util.FontHandler
+import io.github.username.projectname.util.github.RepoHandler
+import io.github.username.projectname.util.github.Repository
 import kotlinx.browser.window
 import kotlinx.coroutines.await
 import org.jetbrains.compose.web.css.AlignContent

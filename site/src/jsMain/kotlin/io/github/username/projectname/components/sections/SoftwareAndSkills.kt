@@ -3,10 +3,6 @@ package io.github.username.projectname.components.sections
 import AppearanceAwareImage
 import IconButtonNoHover
 import androidx.compose.runtime.Composable
-import io.github.username.projectname.Config
-import io.github.username.projectname.components.widgets.GlassBox
-import io.github.username.projectname.util.FontHandler
-import io.github.username.projectname.util.LinkableImage
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
@@ -18,6 +14,10 @@ import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.style.breakpoint.ResponsiveValues
 import com.varabyte.kobweb.silk.components.text.SpanText
+import io.github.username.projectname.Config
+import io.github.username.projectname.components.widgets.GlassBox
+import io.github.username.projectname.util.FontHandler
+import io.github.username.projectname.util.LinkableImage
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.H1
