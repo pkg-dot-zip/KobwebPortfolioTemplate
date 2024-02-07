@@ -5,6 +5,7 @@ import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.attrsModifier
 import com.varabyte.kobweb.compose.ui.modifiers.classNames
+import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import io.github.username.projectname.Config
 import org.jetbrains.compose.web.dom.A
 
@@ -17,7 +18,10 @@ enum class ProfileBadgeTheme(val value: String) {
 @Composable
 fun LinkedInProfileBadge(
     username: String = Config.Socials.LINKEDIN_USERNAME,
-    theme: ProfileBadgeTheme = ProfileBadgeTheme.LIGHT
+    theme: ProfileBadgeTheme = when (ColorMode.current) {
+        ColorMode.LIGHT -> ProfileBadgeTheme.DARK
+        ColorMode.DARK -> ProfileBadgeTheme.LIGHT
+    }
 ) {
     Box(
         modifier = Modifier.attrsModifier {
