@@ -1,9 +1,6 @@
 package io.github.username.projectname.components.sections
 
 import androidx.compose.runtime.*
-import io.github.username.projectname.Config
-import io.github.username.projectname.Res
-import io.github.username.projectname.util.FontHandler
 import com.varabyte.kobweb.compose.css.AlignContent
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontSize
@@ -20,6 +17,9 @@ import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.Config
+import io.github.username.projectname.Res
+import io.github.username.projectname.util.FontHandler
 import org.jetbrains.compose.web.css.JustifyContent
 import org.jetbrains.compose.web.css.cssRem
 

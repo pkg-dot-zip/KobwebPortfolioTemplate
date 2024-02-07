@@ -1,9 +1,6 @@
 package io.github.username.projectname.components.sections
 
 import androidx.compose.runtime.Composable
-import io.github.username.projectname.Config
-import io.github.username.projectname.Res
-import io.github.username.projectname.util.FontHandler
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -16,6 +13,9 @@ import com.varabyte.kobweb.compose.ui.modifiers.overflow
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
 import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.text.SpanText
+import io.github.username.projectname.Config
+import io.github.username.projectname.Res
+import io.github.username.projectname.util.FontHandler
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.H1
 

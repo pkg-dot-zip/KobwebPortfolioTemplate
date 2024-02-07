@@ -1,10 +1,6 @@
 package io.github.username.projectname.components.widgets
 
 import androidx.compose.runtime.Composable
-import io.github.username.projectname.Config
-import io.github.username.projectname.Res
-import io.github.username.projectname.util.extensions.toInt
-import io.github.username.projectname.util.github.Repository
 import com.varabyte.kobweb.compose.css.*
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -14,6 +10,10 @@ import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.core.PageContext
 import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.Config
+import io.github.username.projectname.Res
+import io.github.username.projectname.util.extensions.toInt
+import io.github.username.projectname.util.github.Repository
 import org.jetbrains.compose.web.css.CSSColorValue
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.cssRem

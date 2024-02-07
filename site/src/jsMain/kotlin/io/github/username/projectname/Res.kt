@@ -62,8 +62,8 @@ object Res {
 
     // Colors (noted in RGB, can also take hex).
     object Color {
-        val HORIZONTAL_RULER_COLOR_LIGHT = rgb(0,0,0)
-        val HORIZONTAL_RULER_COLOR_DARK = rgb(255,255,255)
+        val HORIZONTAL_RULER_COLOR_LIGHT = rgb(0, 0, 0)
+        val HORIZONTAL_RULER_COLOR_DARK = rgb(255, 255, 255)
         val SOFTWARE_AND_SKILLS_BOX_BORDER_COLOR_LIGHT = rgb(233, 233, 233)
         val SOFTWARE_AND_SKILLS_BORDER_COLOR_DARK = rgb(78, 78, 78)
         val FOOTER_COLOR_LIGHT = rgb(241, 241, 241)

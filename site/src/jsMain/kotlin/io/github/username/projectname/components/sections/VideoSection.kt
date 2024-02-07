@@ -1,15 +1,15 @@
 package io.github.username.projectname.components.sections
 
 import androidx.compose.runtime.Composable
-import io.github.username.projectname.Config
-import io.github.username.projectname.components.widgets.VideoComponent
-import io.github.username.projectname.util.FontHandler
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
 import com.varabyte.kobweb.silk.components.text.SpanText
+import io.github.username.projectname.Config
+import io.github.username.projectname.components.widgets.VideoComponent
+import io.github.username.projectname.util.FontHandler
 import org.jetbrains.compose.web.dom.H1
 
 @Composable

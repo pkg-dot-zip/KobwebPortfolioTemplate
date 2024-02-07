@@ -1,7 +1,6 @@
 package io.github.username.projectname.components.widgets
 
 import androidx.compose.runtime.Composable
-import io.github.username.projectname.Res
 import com.varabyte.kobweb.compose.css.CSSLengthNumericValue
 import com.varabyte.kobweb.compose.css.CSSLengthOrPercentageNumericValue
 import com.varabyte.kobweb.compose.css.MixBlendMode
@@ -15,6 +14,7 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.Res
 import org.jetbrains.compose.web.css.*
 
 // FROM: https://github.com/binayshaw7777/Kotfolio

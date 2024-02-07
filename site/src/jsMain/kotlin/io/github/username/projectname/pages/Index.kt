@@ -1,8 +1,6 @@
 package io.github.username.projectname.pages
 
 import androidx.compose.runtime.Composable
-import io.github.username.projectname.Config
-import io.github.username.projectname.components.widgets.ThemeChangeButton
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -13,8 +11,10 @@ import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.style.breakpoint.ResponsiveValues
+import io.github.username.projectname.Config
 import io.github.username.projectname.components.sections.*
 import io.github.username.projectname.components.widgets.HorizontalRuler
+import io.github.username.projectname.components.widgets.ThemeChangeButton
 
 @Page
 @Composable
@@ -65,7 +65,6 @@ fun HomePage() {
         HorizontalRuler()
         SoftwareAndSkills()
         HorizontalRuler()
-
         RepoSection()
 
         // Footer.

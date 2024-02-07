@@ -1,7 +1,6 @@
 package io.github.username.projectname.components.sections
 
 import androidx.compose.runtime.Composable
-import io.github.username.projectname.Config
 import com.varabyte.kobweb.compose.css.FontSize
 import com.varabyte.kobweb.compose.css.FontStyle
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -12,6 +11,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.fontStyle
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.silk.components.text.SpanText
+import io.github.username.projectname.Config
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.Text
