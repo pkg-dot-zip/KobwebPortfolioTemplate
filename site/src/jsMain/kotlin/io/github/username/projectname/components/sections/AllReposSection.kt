@@ -1,10 +1,6 @@
 package io.github.username.projectname.components.sections
 
 import androidx.compose.runtime.*
-import io.github.username.projectname.Res
-import io.github.username.projectname.util.FontHandler
-import io.github.username.projectname.util.github.RepoHandler
-import io.github.username.projectname.util.github.Repository
 import com.varabyte.kobweb.compose.css.CSSLengthNumericValue
 import com.varabyte.kobweb.compose.css.CSSLengthOrPercentageNumericValue
 import com.varabyte.kobweb.compose.css.MixBlendMode
@@ -22,6 +18,10 @@ import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.Res
+import io.github.username.projectname.util.FontHandler
+import io.github.username.projectname.util.github.RepoHandler
+import io.github.username.projectname.util.github.Repository
 import kotlinx.browser.window
 import kotlinx.coroutines.await
 import org.jetbrains.compose.web.css.CSSColorValue
@@ -32,11 +32,6 @@ import org.w3c.fetch.Request
 
 @Composable
 fun AllReposSection() {
-    addRepos()
-}
-
-@Composable
-private fun addRepos() {
     var data by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
@@ -77,7 +72,8 @@ private fun createUIElementForRepo(
         .border(width = borderWidth, style = borderStyle, color = borderColor)
         .styleModifier {
             mixBlendMode(blendMode)
-        }.id("${repository.name}RepoDiv")) {
+        }.id("${repository.name}RepoDiv")
+    ) {
         Column {
             // Text above Repo Image.
             Row(modifier = Modifier.margin(all = 2.cssRem)) {
