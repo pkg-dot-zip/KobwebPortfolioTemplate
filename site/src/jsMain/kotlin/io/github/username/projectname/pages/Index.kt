@@ -14,6 +14,7 @@ import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.style.breakpoint.ResponsiveValues
 import io.github.username.projectname.components.sections.*
+import io.github.username.projectname.components.widgets.HorizontalRuler
 
 @Page
 @Composable
@@ -61,7 +62,10 @@ fun HomePage() {
             }
         }
 
+        HorizontalRuler()
         SoftwareAndSkills()
+        HorizontalRuler()
+
         RepoSection()
 
         // Footer.
