@@ -10,6 +10,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import io.github.username.projectname.Config
 import io.github.username.projectname.Res
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Hr
@@ -25,6 +26,8 @@ fun HorizontalRuler(
         ColorMode.DARK -> Res.Color.HORIZONTAL_RULER_COLOR_DARK
     },
 ) {
+    if (!Config.USE_HORIZONTAL_RULERS) return
+
     Hr(
         Modifier.fillMaxWidth(fillAmount).margin(topBottom = marginTopBottom)
             .border(width = borderWidth, style = borderStyle, color = borderColor).borderRadius(7.px).toAttrs()

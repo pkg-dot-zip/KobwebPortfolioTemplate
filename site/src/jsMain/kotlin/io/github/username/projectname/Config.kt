@@ -16,9 +16,9 @@ object Config {
     const val FULL_NAME: String =
         "John Doe" // Put your full name here, or if you're not comfortable with that, your online pseudonym.
 
+    // Styling.
+    const val USE_HORIZONTAL_RULERS = false
     const val PUT_QR_CODE_IN_FOOTER = false
-
-    // Theme Button.
     const val IS_THEME_BUTTON_ROUND = true  // Button is round on true, if not it'll be square.
 
 
