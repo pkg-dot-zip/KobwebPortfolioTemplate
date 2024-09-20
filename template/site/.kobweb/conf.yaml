@@ -1,0 +1,14 @@
+site:
+  title: "KobwebPortfolioTemplate"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/kotlin-webpack/js/developmentExecutable/kobwebportfoliotemplate.js"
+      api: "build/libs/kobwebportfoliotemplate.jar"
+    prod:
+      script: "build/kotlin-webpack/js/productionExecutable/kobwebportfoliotemplate.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
