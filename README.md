@@ -74,14 +74,28 @@ Repositories Page Example
 ## 🛠️ TODO <a name = "todo"></a>
 - If you have any suggestions, feel free to [create an issue](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/issues/new). Make sure to add the '_enhancement_' label. 😉
 ## 🎈 Usage <a name="usage"></a>
+### Retrieving the project
+#### Method 1: (**Recommended**)
+1. Open the terminal in an empty directory where you want to clone this template to.
+1. Open your terminal and run the following command:
+```bash
+kobweb create --repo https://github.com/pkg-dot-zip/KobwebPortfolioTemplate
+```
+Then follow the instructions in your terminal.
+
+#### Method 2:
+1. Go to the [project page on GitHub](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate).
+1. Click on the green button displaying the text "Use this template" and follow the instructions.
+1. Clone your newly crafted repository and start working on the site.
+
 ### Getting started
 1. Open the project in [IntelliJ](https://www.jetbrains.com/idea/) (or navigate to project folder in cmd).
 1. Open the Terminal tab at the bottom of your screen.
 1. Type the following:
 
 ```bash
-$ cd site
-$ kobweb run
+cd site
+kobweb run
 ```
 4. Open [http://localhost:8080](http://localhost:8080) with your browser to see the result. This is a live view of your website; any time you make adjustments, the site will rebuild and you can view the results here.
 *Note*: You can configure the port in *site/.kobweb/conf.yaml*.
