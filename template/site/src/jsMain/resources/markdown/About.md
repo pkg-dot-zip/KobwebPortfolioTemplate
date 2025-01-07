@@ -31,7 +31,7 @@ Additionally, I’m experienced in crafting **class diagrams**, writing **techni
 
 Beyond coding, I have a keen interest in languages and communication. I’ve studied **PUT_LANGUAGE**, reaching an elementary proficiency, and completed a **PUT_LANGUAGE_COURSE**. These experiences expanded my cultural awareness and enriched my ability to communicate in diverse settings.
 
-Moreover, I have hands-on teaching experience from a **PUT_INTERNSHIP_DURATION** internship at a primary school, where I honed my skills in explaining complex concepts in simple terms—an essential trait in technology when guiding others or presenting to non-technical stakeholders.
+Moreover, I have **PUT_REST**.
 
 ## Career Aspirations
 

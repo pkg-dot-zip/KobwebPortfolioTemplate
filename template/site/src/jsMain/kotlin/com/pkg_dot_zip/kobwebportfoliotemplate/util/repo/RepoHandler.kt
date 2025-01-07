@@ -4,14 +4,8 @@ import kotlinx.serialization.json.*
 
 object RepoHandler {
 
-    const val API_URL: String = "https://api.github.com/users/varabyte/repos"
-
-    enum class RepositoryShowingMode {
-        ALL,
-        NO_FORKED,
-        FORKED_ONLY,
-        MOST_STARRED
-    }
+    // NOTE: Put your own username here!
+    const val API_URL: String = "https://api.github.com/users/varabyte/repos?per_page=100"
 
     fun getRepoList(json: String, repositoryShowingMode: RepositoryShowingMode): List<Repository> {
         val list: List<Repository> = getRepoListFromJson(json)

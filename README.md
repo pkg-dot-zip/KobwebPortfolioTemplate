@@ -2,12 +2,13 @@
 
 <div align="center">
 
+![](docs/image/photo-collage.png.png)
+
   [![Stars](https://img.shields.io/github/stars/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/stargazers)
   [![GitHub Issues](https://img.shields.io/github/issues/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/issues)
   [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/pulls)
 
 </div>
-
 
 <p align="center">An auto-updating content portfolio template made in <a href="https://kotlinlang.org/">Kotlin</a> using <a href="https://kobweb.varabyte.com/">Kobweb</a>!
 </p>
@@ -42,7 +43,7 @@ This solution simply **saves** a lot of **time**.
 - CSS effects on hover of images.
 
 ## 🌐 Example <a name = "example"></a>
-You can look at a live version of a website that used this template [here](https://www.meneerdegroot.nl/).
+You can look at a live version of a website that used this template [here](https://pkg-dot-zip.com/).
 
 ### Index Page Example
 <details>
@@ -129,11 +130,11 @@ If you want to create your own pages, or change the layout, these Chrome Extensi
 Kotlin multiplatform / multi-format serialization used for JSON deserialization
 - [GitHub REST API](https://docs.github.com/en/rest) - Used to retrieve data from GitHub
 - [Animated Fluent Emojis](https://animated-fluent-emoji.vercel.app/) - Used for all the animated emojis you see on the site
-- [GitHub Socialify](https://socialify.git.ci/) - Effortlessly create social images for GItHub projects to share with the world. 
+- [GitHub Socialify](https://socialify.git.ci/) - Effortlessly create social images for GitHub projects to share with the world. 
 - [MyOctocat](https://myoctocat.com/) - Used to generate the Octocat on the repositories page
 
 ## ✍️ Authors <a name = "authors"></a>
-- [@OnsPetruske](https://github.com/pkg-dot-zip) - Idea & Initial work.
+- [@pkg-dot-zip](https://github.com/pkg-dot-zip) - Idea & Initial work.
 
 See also the list of [contributors](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/contributors) who participated in this project.
 
