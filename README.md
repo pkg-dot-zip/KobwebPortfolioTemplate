@@ -2,12 +2,13 @@
 
 <div align="center">
 
+![](docs/image/photo-collage.png.png)
+
   [![Stars](https://img.shields.io/github/stars/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/stargazers)
   [![GitHub Issues](https://img.shields.io/github/issues/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/issues)
   [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/pkg-dot-zip/KobwebPortfolioTemplate.svg)](https://github.com/pkg-dot-zip/KobwebPortfolioTemplate/pulls)
 
 </div>
-
 
 <p align="center">An auto-updating content portfolio template made in <a href="https://kotlinlang.org/">Kotlin</a> using <a href="https://kobweb.varabyte.com/">Kobweb</a>!
 </p>
