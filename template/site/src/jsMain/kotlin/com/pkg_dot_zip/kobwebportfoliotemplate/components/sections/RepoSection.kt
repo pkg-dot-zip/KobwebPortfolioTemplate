@@ -7,6 +7,7 @@ import com.pkg_dot_zip.kobwebportfoliotemplate.util.FontHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.Logger
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepoHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.Repository
+import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepositoryShowingMode
 import com.varabyte.kobweb.compose.css.AlignContent
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
@@ -67,7 +68,7 @@ private fun generateRepoUIElements(data: String) {
 
     logger.info("Generating Repo UI elements... ⚙\uFE0F")
 
-    for (repository in RepoHandler.getRepoList(data, RepoHandler.RepositoryShowingMode.MOST_STARRED)) {
+    for (repository in RepoHandler.getRepoList(data, RepositoryShowingMode.MOST_STARRED)) {
         createUIElementForRepo(repository)
     }
 }

@@ -6,6 +6,7 @@ import com.pkg_dot_zip.kobwebportfoliotemplate.util.FontHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.Logger
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepoHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.Repository
+import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepositoryShowingMode
 import com.varabyte.kobweb.compose.css.CSSLengthNumericValue
 import com.varabyte.kobweb.compose.css.CSSLengthOrPercentageNumericValue
 import com.varabyte.kobweb.compose.css.MixBlendMode
@@ -44,7 +45,7 @@ private fun generateAllRepoElements(data: String) {
     val logger = Logger.get("generateAllRepoElements")
 
     SimpleGrid(numColumns(base = 1, sm = 1, md = 2, lg = 2)) {
-        for (repository in RepoHandler.getRepoList(data, RepoHandler.RepositoryShowingMode.ALL)) {
+        for (repository in RepoHandler.getRepoList(data, RepositoryShowingMode.ALL)) {
             logger.info("Creating UI Element for repo: ${repository.name}")
             createUIElementForRepo(repository)
         }
