@@ -24,6 +24,9 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.H1
 
+/**
+ * The boxes you see on the homepage with icons of language and software.
+ */
 @Composable
 fun SoftwareAndSkills() {
     // These are the boxes we want to create.
@@ -103,6 +106,7 @@ fun createGlassBoxContainer(area: ToolsBoxArea) {
 
 private val toolboxHeaderImageModifier = Modifier.width(24.px)
 
+// USER TODO: Add your own boxes in this method if you want more than the 4 in the template.
 @Composable
 private fun getToolBoxAreas(): List<ToolsBoxArea> = listOf(
     ToolsBoxArea(
@@ -114,7 +118,7 @@ private fun getToolBoxAreas(): List<ToolsBoxArea> = listOf(
     ToolsBoxArea("Frameworks", FRAMEWORKS) { Image(src = Res.AnimatedEmojis.MAN_JUGGLING, toolboxHeaderImageModifier) },
 )
 
-// All IDEs you use.
+// USER TODO: Put All IDEs you use here.
 private val IDES: Collection<LinkableImage> = listOf(
     LinkableImage("https://www.jetbrains.com/fleet/", Res.Software.FLEET_LOGO),
     LinkableImage("https://www.jetbrains.com/clion/", Res.Software.CLION_LOGO),
@@ -126,7 +130,7 @@ private val IDES: Collection<LinkableImage> = listOf(
     LinkableImage("https://www.jetbrains.com/ruby/", Res.Software.RUBYMINE_LOGO),
 )
 
-// Notable frameworks.
+// USER TODO: Put All Notable frameworks you use here.
 private val FRAMEWORKS: Collection<LinkableImage> = listOf(
     LinkableImage("https://kobweb.varabyte.com/", Res.Frameworks.KOBWEB_LOGO),
     LinkableImage("https://www.raylib.com/", Res.Frameworks.RAYLIB_LOGO),
@@ -138,7 +142,7 @@ private val FRAMEWORKS: Collection<LinkableImage> = listOf(
     LinkableImage("https://github.com/kordlib/kord", Res.Frameworks.KORD_LOGO),
 )
 
-// Other (relevant) software you use.
+// USER TODO: Put All Other (relevant) software you use here.
 private val SOFTWARE: Collection<LinkableImage> = listOf(
     LinkableImage("https://www.jetbrains.com/toolbox-app/", Res.Software.TOOLBOX_LOGO),
     LinkableImage("https://f-droid.org/", Res.Software.FDROID_LOGO),
@@ -150,7 +154,7 @@ private val SOFTWARE: Collection<LinkableImage> = listOf(
     LinkableImage("https://www.jetbrains.com/qodana/", Res.Software.QODANA_LOGO),
 )
 
-// Programming language you are proficient in.
+// USER TODO: Put All Programming language you are proficient in here.
 private val PROGRAMMING_LANGUAGES: Collection<LinkableImage> = listOf(
     LinkableImage("https://en.wikipedia.org/wiki/C_(programming_language)", Res.Languages.C_LOGO),
     LinkableImage("https://en.wikipedia.org/wiki/C%2B%2B", Res.Languages.CPP_LOGO),

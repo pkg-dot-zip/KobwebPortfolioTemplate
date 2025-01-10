@@ -67,7 +67,7 @@ fun HomePage() {
                             )
                         )
                         SpanText(
-                            "your name",
+                            "your name", // USER TODO: Add your name here!
                             Modifier
                                 .color(sitePalette.brand.accent)
                                 // Use a shadow so this light-colored word is more visible in light mode

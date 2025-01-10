@@ -4,6 +4,13 @@ import com.pkg_dot_zip.kobwebportfoliotemplate.Res
 
 object SpecialDateHandler {
 
+    // USER TODO: Add special date for you if you want!
+    /**
+     * These are hardcoded emojis that will be displayed on a specific date.
+     * The specialDateText will be displayed in the Footer.
+     *
+     * For questions about priority see [getValueOnSpecialDate].
+     */
     private fun getSpecialDates(): Set<SpecialDate> = setOf(
         SpecialDate(WebDate(months = 9, days = 16)).apply {
             title = "Portfolio birthday"
@@ -29,8 +36,8 @@ object SpecialDateHandler {
      *
      * The matching is determined by the following priority (in descending order):
      *
-     * 1. Exact match of the date (including year and hour) – highest priority.
-     * 2. Match on the same date and year.
+     * 1. Exact match of the date (including hour) – highest priority.
+     * 2. Match on the same date (including year).
      * 3. Match on the same date (month and day, ignoring year).
      * 4. If no matches or relevant dates are found, `null` is returned.
      *

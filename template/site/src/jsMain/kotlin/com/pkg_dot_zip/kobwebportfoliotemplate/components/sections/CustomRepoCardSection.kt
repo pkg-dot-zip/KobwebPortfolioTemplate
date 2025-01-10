@@ -24,28 +24,22 @@ import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import kotlinx.browser.window
-import kotlinx.coroutines.await
 import org.jetbrains.compose.web.css.*
-import org.w3c.fetch.Request
 
+/**
+ * All the cards on the repositories page.
+ */
 @Composable
 fun CustomRepoCardSection() {
-    var data by remember { mutableStateOf<String?>(null) }
-
-    LaunchedEffect(Unit) {
-        data = window.fetch(Request(RepoHandler.API_URL)).await().text().await()
-    }
-
-    if (data != null) generateAllRepoElements(data!!)
+    generateAllRepoElements()
 }
 
 @Composable
-private fun generateAllRepoElements(data: String) {
+private fun generateAllRepoElements() {
     val logger = Logger.get("generateAllRepoElements")
 
     SimpleGrid(numColumns(base = 1, sm = 1, md = 2, lg = 2)) {
-        for (repository in RepoHandler.getRepoList(data, RepositoryShowingMode.ALL)) {
+        for (repository in RepoHandler.getAllRepos(RepositoryShowingMode.ALL)) {
             logger.info("Creating UI Element for repo: ${repository.name}")
             createUIElementForRepo(repository)
         }

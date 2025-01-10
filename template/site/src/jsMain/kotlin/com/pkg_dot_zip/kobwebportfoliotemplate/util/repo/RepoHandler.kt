@@ -1,14 +1,34 @@
 package com.pkg_dot_zip.kobwebportfoliotemplate.util.repo
 
-import kotlinx.serialization.json.*
+import androidx.compose.runtime.*
+import kotlinx.browser.window
+import kotlinx.coroutines.await
+import org.w3c.fetch.Request
 
 object RepoHandler {
 
-    // NOTE: Put your own username here!
-    const val API_URL: String = "https://api.github.com/users/varabyte/repos?per_page=100"
+    // USER TODO: Put your own username(s) here!
+    private val users: Array<String> = arrayOf(
+        "varabyte",
+//        "JetBrains"
+    )
 
-    fun getRepoList(json: String, repositoryShowingMode: RepositoryShowingMode): List<Repository> {
-        val list: List<Repository> = getRepoListFromJson(json)
+    // USER TODO: Put your own repos here. Format is 'Owner/Repo'
+    private val specifiedRepos: Array<String> = arrayOf(
+//        "square/okhttp"
+    )
+
+    @Composable
+    fun getAllRepos(repositoryShowingMode: RepositoryShowingMode): List<Repository> {
+        var list: MutableList<Repository> = arrayListOf()
+
+        list.addAll(getUserRepos())
+        list.addAll(getSpecifiedRepos())
+
+        list.removeAll { repo -> shouldSkipRepo(repo) }
+
+        // Then we sort them.
+        list = sortRepoList(list)
 
         // Generate UI element for repos (which ones dependent on REPOSITORY_SHOWING_MODE).
         return when (repositoryShowingMode) {
@@ -24,61 +44,59 @@ object RepoHandler {
         }
     }
 
-    private fun getRepoListFromJson(json: String): List<Repository> {
-        val listToReturn: MutableList<Repository> = mutableListOf()
+    /**
+     * Returns all repositories listed in [specifiedRepos].
+     */
+    @Composable
+    private fun getSpecifiedRepos() : List<Repository> {
+        val repos: ArrayList<Repository> = arrayListOf()
 
-        // First we put all the repos in the listToReturn. We 'clean' the repositories here as well.
-        for (jsonElement in Json.parseToJsonElement(json).jsonArray) {
+        for (repoToAdd in specifiedRepos) {
+            var jsonResponse by remember { mutableStateOf<String?>(null) }
 
-            // License processing.
-            var license = Repository.License("No license found.", "", "", "", "")
-            if (jsonElement.jsonObject["license"].toString() != "null") {
-                license = Repository.License(
-                    key = jsonElement.jsonObject["license"]!!.jsonObject["key"].toString(),
-                    name = jsonElement.jsonObject["license"]!!.jsonObject["name"].toString(),
-                    spdx_id = jsonElement.jsonObject["license"]!!.jsonObject["spdx_id"].toString(),
-                    url = jsonElement.jsonObject["license"]!!.jsonObject["url"].toString(),
-                    node_id = jsonElement.jsonObject["license"]!!.jsonObject["node_id"].toString(),
-                )
+            LaunchedEffect(Unit) {
+                jsonResponse = window.fetch(Request("https://api.github.com/repos/${repoToAdd}")).await().text().await()
             }
 
-            // Repo processing.
-            var repository = Repository(
-                name = jsonElement.jsonObject["name"].toString(),
-                description = jsonElement.jsonObject["description"].toString(),
-                id = jsonElement.jsonObject["id"].toString(),
-                node_id = jsonElement.jsonObject["node_id"].toString(),
-                full_name = jsonElement.jsonObject["full_name"]!!.jsonPrimitive.toString(),
-                archived = jsonElement.jsonObject["archived"]!!.jsonPrimitive.boolean,
-                open_issues = jsonElement.jsonObject["open_issues"]!!.jsonPrimitive.int,
-                watchers_count = jsonElement.jsonObject["watchers_count"]!!.jsonPrimitive.int,
-                stargazers_count = jsonElement.jsonObject["stargazers_count"]!!.jsonPrimitive.int,
-                license = license,
-                fork = jsonElement.jsonObject["fork"]!!.jsonPrimitive.boolean,
-                private = jsonElement.jsonObject["private"]!!.jsonPrimitive.boolean,
-                languages = arrayOf(jsonElement.jsonObject["language"].toString()),
-                html_url = jsonElement.jsonObject["html_url"]!!.jsonPrimitive.toString(),
-                topics = jsonElement.jsonObject["topics"]!!.jsonArray.map { it.jsonPrimitive.content }.toTypedArray(),
-            )
-
-            repository = Repository.cleanParse(repository) // Remove quotes from strings.
-            if (shouldSkipRepo(repository)) continue // Check if need to skip, if so skip.
-
-            listToReturn.add(repository)
+            if (jsonResponse != null) repos.add(RepoParser.parseRepoFromJson(jsonResponse!!))
         }
 
-        // Then we sort them and return them.
-        return sortRepoList(listToReturn)
+        return repos
     }
 
+    /**
+     * Returns all repositories from users listed in [users].
+     */
+    @Composable
+    private fun getUserRepos() : List<Repository> {
+        val repos: ArrayList<Repository> = arrayListOf()
+
+        for (user in users) {
+            var jsonResponse by remember { mutableStateOf<String?>(null) }
+
+            LaunchedEffect(Unit) {
+                // NOTE: If a user has more than 100 repos some will be missing here. You can implement it yourself if needed.
+                jsonResponse = window.fetch(Request("https://api.github.com/users/${user}/repos?per_page=100")).await().text().await()
+            }
+
+            if (jsonResponse != null) repos.addAll(RepoParser.parseRepoFromMultipleRepoJson(jsonResponse!!))
+        }
+
+        return repos
+    }
+
+    /**
+     * Sorts a list of repositories by amount of stars.
+     * @param listToSort The list to sort.
+     */
     private fun sortRepoList(listToSort: MutableList<Repository>): MutableList<Repository> = listToSort.apply {
-        sortByDescending(Repository::stargazers_count) // Sort them by stars.
+        sortByDescending(Repository::stargazers_count)
     }
 
     private fun shouldSkipRepo(repository: Repository): Boolean {
         if (repository.fork!!) return true // Skip all forks.
 
-        // Add more repos to skip here!
+        // USER TODO: Add more repos to skip here if needed!
 
         return false
     }
