@@ -53,22 +53,16 @@ fun RepoSection() {
 
 @Composable
 private fun addRepos() {
-    var data by remember { mutableStateOf<String?>(null) }
-
-    LaunchedEffect(Unit) {
-        data = window.fetch(Request(RepoHandler.API_URL)).await().text().await()
-    }
-
-    if (data != null) generateRepoUIElements(data!!)
+    generateRepoUIElements()
 }
 
 @Composable
-private fun generateRepoUIElements(data: String) {
+private fun generateRepoUIElements() {
     val logger = Logger.get("generateRepoUIElements")
 
     logger.info("Generating Repo UI elements... ⚙\uFE0F")
 
-    for (repository in RepoHandler.getRepoList(data, RepositoryShowingMode.MOST_STARRED)) {
+    for (repository in RepoHandler.getAllRepos(RepositoryShowingMode.MOST_STARRED)) {
         createUIElementForRepo(repository)
     }
 }

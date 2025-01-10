@@ -31,21 +31,15 @@ import org.w3c.fetch.Request
 
 @Composable
 fun CustomRepoCardSection() {
-    var data by remember { mutableStateOf<String?>(null) }
-
-    LaunchedEffect(Unit) {
-        data = window.fetch(Request(RepoHandler.API_URL)).await().text().await()
-    }
-
-    if (data != null) generateAllRepoElements(data!!)
+    generateAllRepoElements()
 }
 
 @Composable
-private fun generateAllRepoElements(data: String) {
+private fun generateAllRepoElements() {
     val logger = Logger.get("generateAllRepoElements")
 
     SimpleGrid(numColumns(base = 1, sm = 1, md = 2, lg = 2)) {
-        for (repository in RepoHandler.getRepoList(data, RepositoryShowingMode.ALL)) {
+        for (repository in RepoHandler.getAllRepos(RepositoryShowingMode.ALL)) {
             logger.info("Creating UI Element for repo: ${repository.name}")
             createUIElementForRepo(repository)
         }

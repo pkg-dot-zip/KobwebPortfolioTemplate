@@ -1,14 +1,21 @@
 package com.pkg_dot_zip.kobwebportfoliotemplate.util.repo
 
+import androidx.compose.runtime.*
+import kotlinx.browser.window
+import kotlinx.coroutines.await
 import kotlinx.serialization.json.*
+import org.w3c.fetch.Request
 
 object RepoHandler {
 
-    // NOTE: Put your own username here!
-    const val API_URL: String = "https://api.github.com/users/varabyte/repos?per_page=100"
+    // NOTE: Put your own username(s) here!
+    val users = arrayOf("varabyte", "JetBrains")
 
-    fun getRepoList(json: String, repositoryShowingMode: RepositoryShowingMode): List<Repository> {
-        val list: List<Repository> = getRepoListFromJson(json)
+    @Composable
+    fun getAllRepos(repositoryShowingMode: RepositoryShowingMode): List<Repository> {
+        val list: ArrayList<Repository> = arrayListOf()
+
+        list.addAll(getUserRepos())
 
         // Generate UI element for repos (which ones dependent on REPOSITORY_SHOWING_MODE).
         return when (repositoryShowingMode) {
@@ -24,7 +31,24 @@ object RepoHandler {
         }
     }
 
-    private fun getRepoListFromJson(json: String): List<Repository> {
+    @Composable
+    private fun getUserRepos() : List<Repository> {
+        val list: ArrayList<Repository> = arrayListOf()
+
+        for (user in users) {
+            var data by remember { mutableStateOf<String?>(null) }
+
+            LaunchedEffect(Unit) {
+                data = window.fetch(Request("https://api.github.com/users/${user}/repos?per_page=100")).await().text().await()
+            }
+
+            if (data != null) list.addAll(getRepoListFromUserJson(data!!))
+        }
+
+        return list
+    }
+
+    private fun getRepoListFromUserJson(json: String): List<Repository> {
         val listToReturn: MutableList<Repository> = mutableListOf()
 
         // First we put all the repos in the listToReturn. We 'clean' the repositories here as well.
