@@ -25,14 +25,10 @@ import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.breakpoint.displayIfAtLeast
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import kotlinx.browser.window
-import kotlinx.coroutines.await
 import org.jetbrains.compose.web.css.FlexWrap
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.H1
-import org.w3c.fetch.Request
-
 
 @Composable
 fun RepoSection() {

@@ -9,13 +9,17 @@ import org.w3c.fetch.Request
 object RepoHandler {
 
     // NOTE: Put your own username(s) here!
-    private val users = arrayOf("varabyte", "JetBrains")
+    private val users: Array<String> = arrayOf("varabyte", "JetBrains")
+
+    // NOTE: Put your own repos here. Format is 'Owner/Repo'
+    private val specifiedRepos: Array<String> = arrayOf("square/okhttp")
 
     @Composable
     fun getAllRepos(repositoryShowingMode: RepositoryShowingMode): List<Repository> {
         var list: MutableList<Repository> = arrayListOf()
 
         list.addAll(getUserRepos())
+        list.addAll(getSpecifiedRepos())
 
         // Then we sort them.
         list = sortRepoList(list)
@@ -35,8 +39,25 @@ object RepoHandler {
     }
 
     @Composable
+    private fun getSpecifiedRepos() : List<Repository> {
+        val repos: ArrayList<Repository> = arrayListOf()
+
+        for (repoToAdd in specifiedRepos) {
+            var jsonResponse by remember { mutableStateOf<String?>(null) }
+
+            LaunchedEffect(Unit) {
+                jsonResponse = window.fetch(Request("https://api.github.com/repos/${repoToAdd}")).await().text().await()
+            }
+
+            if (jsonResponse != null) repos.add(parseRepoFromJson(Json.parseToJsonElement(jsonResponse!!)))
+        }
+
+        return repos
+    }
+
+    @Composable
     private fun getUserRepos() : List<Repository> {
-        val userRepos: ArrayList<Repository> = arrayListOf()
+        val repos: ArrayList<Repository> = arrayListOf()
 
         for (user in users) {
             var jsonResponse by remember { mutableStateOf<String?>(null) }
@@ -45,10 +66,10 @@ object RepoHandler {
                 jsonResponse = window.fetch(Request("https://api.github.com/users/${user}/repos?per_page=100")).await().text().await()
             }
 
-            if (jsonResponse != null) userRepos.addAll(parseRepoFromMultipleRepoJson(jsonResponse!!))
+            if (jsonResponse != null) repos.addAll(parseRepoFromMultipleRepoJson(jsonResponse!!))
         }
 
-        return userRepos
+        return repos
     }
 
     private fun parseRepoFromMultipleRepoJson(json: String): List<Repository> {

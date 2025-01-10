@@ -24,10 +24,7 @@ import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import kotlinx.browser.window
-import kotlinx.coroutines.await
 import org.jetbrains.compose.web.css.*
-import org.w3c.fetch.Request
 
 @Composable
 fun CustomRepoCardSection() {
