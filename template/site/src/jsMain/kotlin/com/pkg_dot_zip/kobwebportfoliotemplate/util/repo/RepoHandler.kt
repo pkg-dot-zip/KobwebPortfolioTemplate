@@ -7,11 +7,16 @@ import org.w3c.fetch.Request
 
 object RepoHandler {
 
-    // NOTE: Put your own username(s) here!
-    private val users: Array<String> = arrayOf("varabyte", "JetBrains")
+    // USER TODO: Put your own username(s) here!
+    private val users: Array<String> = arrayOf(
+        "varabyte",
+//        "JetBrains"
+    )
 
-    // NOTE: Put your own repos here. Format is 'Owner/Repo'
-    private val specifiedRepos: Array<String> = arrayOf("square/okhttp")
+    // USER TODO: Put your own repos here. Format is 'Owner/Repo'
+    private val specifiedRepos: Array<String> = arrayOf(
+//        "square/okhttp"
+    )
 
     @Composable
     fun getAllRepos(repositoryShowingMode: RepositoryShowingMode): List<Repository> {
@@ -39,6 +44,9 @@ object RepoHandler {
         }
     }
 
+    /**
+     * Returns all repositories listed in [specifiedRepos].
+     */
     @Composable
     private fun getSpecifiedRepos() : List<Repository> {
         val repos: ArrayList<Repository> = arrayListOf()
@@ -56,6 +64,9 @@ object RepoHandler {
         return repos
     }
 
+    /**
+     * Returns all repositories from users listed in [users].
+     */
     @Composable
     private fun getUserRepos() : List<Repository> {
         val repos: ArrayList<Repository> = arrayListOf()
@@ -64,6 +75,7 @@ object RepoHandler {
             var jsonResponse by remember { mutableStateOf<String?>(null) }
 
             LaunchedEffect(Unit) {
+                // NOTE: If a user has more than 100 repos some will be missing here. You can implement it yourself if needed.
                 jsonResponse = window.fetch(Request("https://api.github.com/users/${user}/repos?per_page=100")).await().text().await()
             }
 
@@ -73,14 +85,18 @@ object RepoHandler {
         return repos
     }
 
+    /**
+     * Sorts a list of repositories by amount of stars.
+     * @param listToSort The list to sort.
+     */
     private fun sortRepoList(listToSort: MutableList<Repository>): MutableList<Repository> = listToSort.apply {
-        sortByDescending(Repository::stargazers_count) // Sort them by stars.
+        sortByDescending(Repository::stargazers_count)
     }
 
     private fun shouldSkipRepo(repository: Repository): Boolean {
         if (repository.fork!!) return true // Skip all forks.
 
-        // Add more repos to skip here!
+        // USER TODO: Add more repos to skip here if needed!
 
         return false
     }

@@ -26,6 +26,9 @@ import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import org.jetbrains.compose.web.css.*
 
+/**
+ * All the cards on the repositories page.
+ */
 @Composable
 fun CustomRepoCardSection() {
     generateAllRepoElements()

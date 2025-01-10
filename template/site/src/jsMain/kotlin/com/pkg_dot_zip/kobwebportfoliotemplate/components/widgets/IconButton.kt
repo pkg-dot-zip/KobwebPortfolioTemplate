@@ -30,6 +30,9 @@ fun IconButton(onClick: () -> Unit, content: @Composable () -> Unit) {
     }
 }
 
+/**
+ * A nice zoom animation upon hovering on icons.
+ */
 val scaleOnHoverAnimation = CssStyle {
     val scale = 1.1
     val duration = 0.175.s

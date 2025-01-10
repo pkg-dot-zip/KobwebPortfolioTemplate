@@ -12,6 +12,9 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.Source
 import org.jetbrains.compose.web.dom.Video
 
+/**
+ * See through video background! Make sure to configure the video in [src] & [opacity].
+ */
 @Composable
 fun VideoBackground(src: String = Res.Video.CODING, id: String = "videoBackground", opacity: Double = 0.03, zIndex: Int = 0) {
     val videoType = when (src.substringAfterLast('.', "")) {

@@ -40,6 +40,8 @@ val FooterStyle = CssStyle.base {
 fun Footer(modifier: Modifier = Modifier) {
     Box(FooterStyle.toModifier().then(modifier), contentAlignment = Alignment.Center) {
         SimpleGrid(numColumns(1), Modifier.align(Alignment.Center)) {
+
+            // This is the text you see whenever a special date emoji is displayed! See SpecialDateHandler.
             val specialText =
                 SpecialDateHandler.getValueOnSpecialDate { it.specialDateText }
             if (specialText != null) {
@@ -47,6 +49,7 @@ fun Footer(modifier: Modifier = Modifier) {
                 Box(Modifier.margin(topBottom = 8.px)) { }
             }
 
+            // This the template text. Don't remove this please.
             Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
                 val sitePalette = ColorMode.current.toSitePalette()
                 SpanText("Built with ")
@@ -68,6 +71,7 @@ fun Footer(modifier: Modifier = Modifier) {
 
             Box(Modifier.margin(topBottom = 8.px)) { }
 
+            // This are the social icons in the footer.
             val ctx = rememberPageContext()
             Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
                 for ((url, imageRes) in getFooterSocials()) {
@@ -75,6 +79,8 @@ fun Footer(modifier: Modifier = Modifier) {
                         AppearanceAwareImage(src = imageRes)
                     }
                 }
+
+                // 😉. Feel free to remove if professional.
                 IconButtonWithHover(onClick = { ctx.router.navigateTo("https://www.youtube.com/watch?v=dQw4w9WgXcQ") }) {
                     AppearanceAwareImage(
                         src = Res.AnimatedEmojis.FACE_IN_CLOUDS,
@@ -87,6 +93,10 @@ fun Footer(modifier: Modifier = Modifier) {
     }
 }
 
+// USER TODO: Add your socials here!
+/**
+ * All the socials you see on the bottom of the page in the footer. Feel free to add other socials!
+ */
 private fun getFooterSocials(): Map<String, String> = mapOf(
     "https://github.com/varabyte/" to Res.Socials.GITHUB_LOGO,
     "https://www.linkedin.com/in/williamhgates/" to Res.Socials.LINKEDIN_LOGO,

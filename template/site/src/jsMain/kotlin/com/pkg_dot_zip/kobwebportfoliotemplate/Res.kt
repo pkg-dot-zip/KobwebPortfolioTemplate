@@ -6,7 +6,7 @@ object Res {
     private const val IMAGE_PATH = "image/"
     const val LOGO_LIGHT = "$IMAGE_PATH/kobweb-logo.png"
     const val LOGO_DARK = "$IMAGE_PATH/kobweb-logo.png"
-    const val OCTOCAT = "$IMAGE_PATH/octocat.png" // Created with https://myoctocat.com/build-your-octocat/
+    const val OCTOCAT = "$IMAGE_PATH/octocat.png" // Created with https://myoctocat.com/build-your-octocat/ // USER TODO: Make sure to add your own octocat since it's really fun!
 
     object Socials {
         private const val SOCIALS = "${IMAGE_PATH}socials/"

@@ -5,7 +5,7 @@ import kotlinx.serialization.json.*
 object RepoParser {
     fun parseRepoFromMultipleRepoJson(jsonString: String): List<Repository> = parseRepoFromMultipleRepoJson(Json.parseToJsonElement(jsonString))
 
-    fun parseRepoFromMultipleRepoJson(jsonElement: JsonElement): List<Repository> {
+    private fun parseRepoFromMultipleRepoJson(jsonElement: JsonElement): List<Repository> {
         val listToReturn: MutableList<Repository> = mutableListOf()
 
         // First we put all the repos in the listToReturn. We 'clean' the repositories here as well.
@@ -18,7 +18,7 @@ object RepoParser {
 
     fun parseRepoFromJson(jsonString: String): Repository = parseRepoFromJson(Json.parseToJsonElement(jsonString))
 
-    fun parseRepoFromJson(jsonElement: JsonElement): Repository {
+    private fun parseRepoFromJson(jsonElement: JsonElement): Repository {
         // License processing.
         var license = Repository.License("No license found.", "", "", "", "")
         if (jsonElement.jsonObject["license"].toString() != "null") {

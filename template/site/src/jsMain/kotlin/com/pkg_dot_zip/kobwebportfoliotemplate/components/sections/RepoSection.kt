@@ -58,7 +58,9 @@ private fun generateRepoUIElements() {
 
     logger.info("Generating Repo UI elements... ⚙\uFE0F")
 
-    for (repository in RepoHandler.getAllRepos(RepositoryShowingMode.MOST_STARRED)) {
+    // Here we take the 3 most starred repos. However, you can change this to whatever repo you want!
+    val repos = RepoHandler.getAllRepos(RepositoryShowingMode.MOST_STARRED)
+    for (repository in repos) {
         createUIElementForRepo(repository)
     }
 }

@@ -103,10 +103,12 @@ enum class SideMenuState {
 fun NavHeader() {
     Row(NavHeaderStyle.toModifier(), verticalAlignment = Alignment.CenterVertically) {
         var colorMode by ColorMode.currentState
+
+        // USER TODO: Put an url to your site here!
         Link("Put your url here!", openExternalLinksStrategy = OpenLinkStrategy.IN_PLACE) {
             // Block display overrides inline display of the <img> tag, so it calculates centering better
 //            Image(if (colorMode == ColorMode.DARK) Res.LOGO_DARK else Res.LOGO_LIGHT, "Logo", Modifier.height(2.cssRem).display(DisplayStyle.Block))
-            SpanText(modifier = Modifier.height(2.cssRem).display(DisplayStyle.Block), text = "Put your site name here!")
+            SpanText(modifier = Modifier.height(2.cssRem).display(DisplayStyle.Block), text = "Put your site name here!") // USER TODO: Put your site name here!
         }
 
         Spacer()

@@ -6,7 +6,10 @@ import com.pkg_dot_zip.kobwebportfoliotemplate.util.Logger
 object EmojiBasedOnDate {
     private val logger = Logger.get { }
 
-    private fun getAvailableEmojis(): Collection<String> = setOf(
+    /***
+     * These are all the emojis displayed on the homepage if no specified emoji for this date was found (see [SpecialDateHandler]).
+     */
+    val emojis: Collection<String> = setOf(
         Res.AnimatedEmojis.ASTONISHED_FACE,
         Res.AnimatedEmojis.NINJA,
         Res.AnimatedEmojis.HAMSA,
@@ -29,7 +32,7 @@ object EmojiBasedOnDate {
     /**
      * Returns an emoji to use on the front page of the site.
      * If [currentDate] is considered a [SpecialDateHandler.SpecialDate] the emoji that fits that event is returned.
-     * If not, a random emoji is chosen instead.
+     * If not, a random emoji is chosen instead from [emojis].
      *
      * @param currentDate The current date.
      * @return The path to the resource image of the emoji as a [String].
@@ -40,7 +43,7 @@ object EmojiBasedOnDate {
         val specialDateEmoji = SpecialDateHandler.getValueOnSpecialDate(currentDate) { it.frontPageEmoji }
         if (specialDateEmoji != null) return specialDateEmoji
 
-        val availableEmojis = getAvailableEmojis()
+        val availableEmojis = emojis
         val randomIndex = availableEmojis.indices.random()
         logger.trace("Random index: $randomIndex")
         return availableEmojis.elementAt(randomIndex)
