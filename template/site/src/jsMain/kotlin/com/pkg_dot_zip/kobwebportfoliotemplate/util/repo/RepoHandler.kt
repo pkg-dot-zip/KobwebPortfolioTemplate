@@ -3,7 +3,6 @@ package com.pkg_dot_zip.kobwebportfoliotemplate.util.repo
 import androidx.compose.runtime.*
 import kotlinx.browser.window
 import kotlinx.coroutines.await
-import kotlinx.serialization.json.*
 import org.w3c.fetch.Request
 
 object RepoHandler {
@@ -20,6 +19,8 @@ object RepoHandler {
 
         list.addAll(getUserRepos())
         list.addAll(getSpecifiedRepos())
+
+        list.removeAll { repo -> shouldSkipRepo(repo) }
 
         // Then we sort them.
         list = sortRepoList(list)
@@ -49,7 +50,7 @@ object RepoHandler {
                 jsonResponse = window.fetch(Request("https://api.github.com/repos/${repoToAdd}")).await().text().await()
             }
 
-            if (jsonResponse != null) repos.add(parseRepoFromJson(Json.parseToJsonElement(jsonResponse!!)))
+            if (jsonResponse != null) repos.add(RepoParser.parseRepoFromJson(jsonResponse!!))
         }
 
         return repos
@@ -66,59 +67,10 @@ object RepoHandler {
                 jsonResponse = window.fetch(Request("https://api.github.com/users/${user}/repos?per_page=100")).await().text().await()
             }
 
-            if (jsonResponse != null) repos.addAll(parseRepoFromMultipleRepoJson(jsonResponse!!))
+            if (jsonResponse != null) repos.addAll(RepoParser.parseRepoFromMultipleRepoJson(jsonResponse!!))
         }
 
         return repos
-    }
-
-    private fun parseRepoFromMultipleRepoJson(json: String): List<Repository> {
-        val listToReturn: MutableList<Repository> = mutableListOf()
-
-        // First we put all the repos in the listToReturn. We 'clean' the repositories here as well.
-        for (jsonElement in Json.parseToJsonElement(json).jsonArray) {
-            val repository = parseRepoFromJson(jsonElement)
-            if (shouldSkipRepo(repository)) continue // Check if need to skip, if so skip.
-            listToReturn.add(repository)
-        }
-
-        return listToReturn
-    }
-
-    private fun parseRepoFromJson(jsonElement: JsonElement): Repository {
-        // License processing.
-        var license = Repository.License("No license found.", "", "", "", "")
-        if (jsonElement.jsonObject["license"].toString() != "null") {
-            license = Repository.License(
-                key = jsonElement.jsonObject["license"]!!.jsonObject["key"].toString(),
-                name = jsonElement.jsonObject["license"]!!.jsonObject["name"].toString(),
-                spdx_id = jsonElement.jsonObject["license"]!!.jsonObject["spdx_id"].toString(),
-                url = jsonElement.jsonObject["license"]!!.jsonObject["url"].toString(),
-                node_id = jsonElement.jsonObject["license"]!!.jsonObject["node_id"].toString(),
-            )
-        }
-
-        // Repo processing.
-        var repository = Repository(
-            name = jsonElement.jsonObject["name"].toString(),
-            description = jsonElement.jsonObject["description"].toString(),
-            id = jsonElement.jsonObject["id"].toString(),
-            node_id = jsonElement.jsonObject["node_id"].toString(),
-            full_name = jsonElement.jsonObject["full_name"]!!.jsonPrimitive.toString(),
-            archived = jsonElement.jsonObject["archived"]!!.jsonPrimitive.boolean,
-            open_issues = jsonElement.jsonObject["open_issues"]!!.jsonPrimitive.int,
-            watchers_count = jsonElement.jsonObject["watchers_count"]!!.jsonPrimitive.int,
-            stargazers_count = jsonElement.jsonObject["stargazers_count"]!!.jsonPrimitive.int,
-            license = license,
-            fork = jsonElement.jsonObject["fork"]!!.jsonPrimitive.boolean,
-            private = jsonElement.jsonObject["private"]!!.jsonPrimitive.boolean,
-            languages = arrayOf(jsonElement.jsonObject["language"].toString()),
-            html_url = jsonElement.jsonObject["html_url"]!!.jsonPrimitive.toString(),
-            topics = jsonElement.jsonObject["topics"]!!.jsonArray.map { it.jsonPrimitive.content }.toTypedArray(),
-        )
-
-        repository = Repository.cleanParse(repository) // Remove quotes from strings.
-        return repository
     }
 
     private fun sortRepoList(listToSort: MutableList<Repository>): MutableList<Repository> = listToSort.apply {
