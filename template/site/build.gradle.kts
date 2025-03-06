@@ -15,36 +15,38 @@ kobweb {
     app {
         index {
 		 head.add {
+             link(rel = "preconnect", href = "https://api.fonts.coollabs.io")
+             link(rel = "preconnect", href = "https://rsms.me/")
+
              // First we add the fonts.
              // Inter.
-             link(rel = "preconnect", href = "https://rsms.me/")
              link(
                  href = "https://rsms.me/inter/inter.css",
                  rel = "stylesheet"
              )
              // Bitter.
              link(
-                 href = "https://fonts.googleapis.com/css?family=Bitter",
+                 href = "https://api.fonts.coollabs.io/css2?family=Bitter",
                  rel = "stylesheet"
              )
              // Raleway.
              link(
-                 href = "https://fonts.googleapis.com/css?family=Raleway",
+                 href = "https://api.fonts.coollabs.io/css2?family=Raleway",
                  rel = "stylesheet"
              )
              // Rokkitt.
              link(
-                 href = "https://fonts.googleapis.com/css?family=Rokkitt",
+                 href = "https://api.fonts.coollabs.io/css2?family=Rokkitt",
                  rel = "stylesheet"
              )
              // JOST.
              link(
-                 href = "https://fonts.googleapis.com/css?family=Jost",
+                 href = "https://api.fonts.coollabs.io/css2?family=Jost",
                  rel = "stylesheet"
              )
              // Major Mono Display.
              link(
-                 href = "https://fonts.googleapis.com/css?family=Major+Mono+Display",
+                 href = "https://api.fonts.coollabs.io/css2?family=Major+Mono+Display",
                  rel = "stylesheet"
              )
          }
