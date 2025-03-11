@@ -1,9 +1,10 @@
 package com.pkg_dot_zip.kobwebportfoliotemplate.components.sections
 
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import com.pkg_dot_zip.kobwebportfoliotemplate.Res
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.FontHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.Logger
+import com.pkg_dot_zip.kobwebportfoliotemplate.util.ProjectPageHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepoHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.Repository
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepositoryShowingMode
@@ -18,6 +19,7 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.styleModifier
+import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.icons.fa.*
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
@@ -82,6 +84,12 @@ private fun createUIElementForRepo(
 
             Row(modifier = Modifier.margin(all = 2.cssRem)) {
                 SpanText("${repository.description}", modifier = Modifier.fontFamily(FontHandler.getFont("repotext")))
+            }
+
+            // Bottom links.
+            val ctx = rememberPageContext()
+            if (ProjectPageHandler.repoHasProjectPage(ctx, repository)) {
+                Link(modifier = Modifier.margin(leftRight = 2.cssRem), path = ProjectPageHandler.projectPagePathString(repository), text = "Visit Blog Post")
             }
         }
 
