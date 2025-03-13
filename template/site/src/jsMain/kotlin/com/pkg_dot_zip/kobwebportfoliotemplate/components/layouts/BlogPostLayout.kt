@@ -1,6 +1,7 @@
 package com.pkg_dot_zip.kobwebportfoliotemplate.components.layouts
 
 import androidx.compose.runtime.Composable
+import com.pkg_dot_zip.kobwebportfoliotemplate.components.widgets.BlogPostHeaderWidget
 import com.pkg_dot_zip.kobwebportfoliotemplate.toSitePalette
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
@@ -17,36 +18,59 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Div
 
-val MarkdownStyle = CssStyle {
+private val defaultHeaderModifier =
+    Modifier.overflowWrap(OverflowWrap.BreakWord)
+
+val BlogPostStyle = CssStyle {
     base { Modifier.fillMaxSize() }
 
     cssRule("h1") {
         Modifier
             .fontSize(3.cssRem)
             .fontWeight(400)
-            .margin(bottom = 2.5.cssRem)
+            .margin(bottom = 0.cssRem)
             .lineHeight(1.2) //1.5x doesn't look as good on very large text
+            .then(defaultHeaderModifier)
     }
 
     cssRule("h2") {
         Modifier
             .fontSize(3.cssRem)
             .fontWeight(300)
-            .margin(topBottom = 2.cssRem)
+            .margin(bottom = 0.cssRem)
+            .then(defaultHeaderModifier)
     }
 
     cssRule("h3") {
         Modifier
             .fontSize(2.4.cssRem)
             .fontWeight(300)
-            .margin(topBottom = 1.5.cssRem)
+            .margin(bottom = 0.cssRem)
+            .then(defaultHeaderModifier)
     }
 
     cssRule("h4") {
         Modifier
             .fontSize(1.2.cssRem)
             .fontWeight(FontWeight.Bolder)
-            .margin(top = 1.cssRem, bottom = 0.5.cssRem)
+            .margin(bottom = 0.cssRem)
+            .then(defaultHeaderModifier)
+    }
+
+    cssRule("h5") {
+        Modifier
+            .fontSize(1.cssRem)
+            .fontWeight(FontWeight.Lighter)
+            .margin(bottom = 0.cssRem)
+            .then(defaultHeaderModifier)
+    }
+
+    cssRule("h6") {
+        Modifier
+            .fontSize(0.8.cssRem)
+            .fontWeight(FontWeight.Light)
+            .margin(bottom = 0.2.cssRem)
+            .then(defaultHeaderModifier)
     }
 
     cssRule("ul") {
@@ -79,12 +103,17 @@ val MarkdownStyle = CssStyle {
             .fontSize(1.cssRem)
             .overflow { x(Overflow.Auto) }
     }
+
+    cssRule("img") {
+        Modifier.fillMaxWidth()
+    }
 }
 
 @Composable
-fun MarkdownLayout(title: String, content: @Composable () -> Unit) {
+fun BlogPostLayout(title: String, content: @Composable () -> Unit) {
     PageLayout(title) {
-        Div(MarkdownStyle.toAttrs()) {
+        Div(BlogPostStyle.toAttrs()) {
+            BlogPostHeaderWidget()
             content()
         }
     }

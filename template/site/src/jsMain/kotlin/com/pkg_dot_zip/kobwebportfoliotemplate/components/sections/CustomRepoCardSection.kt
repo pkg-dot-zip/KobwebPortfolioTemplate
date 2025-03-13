@@ -1,123 +1,24 @@
 package com.pkg_dot_zip.kobwebportfoliotemplate.components.sections
 
 import androidx.compose.runtime.Composable
-import com.pkg_dot_zip.kobwebportfoliotemplate.Res
-import com.pkg_dot_zip.kobwebportfoliotemplate.util.FontHandler
+import com.pkg_dot_zip.kobwebportfoliotemplate.components.widgets.RepoWidget
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.Logger
-import com.pkg_dot_zip.kobwebportfoliotemplate.util.ProjectPageHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepoHandler
-import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.Repository
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.RepositoryShowingMode
-import com.varabyte.kobweb.compose.css.CSSLengthNumericValue
-import com.varabyte.kobweb.compose.css.CSSLengthOrPercentageNumericValue
-import com.varabyte.kobweb.compose.css.MixBlendMode
-import com.varabyte.kobweb.compose.css.mixBlendMode
-import com.varabyte.kobweb.compose.foundation.layout.Box
-import com.varabyte.kobweb.compose.foundation.layout.Column
-import com.varabyte.kobweb.compose.foundation.layout.Row
-import com.varabyte.kobweb.compose.ui.Alignment
-import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.*
-import com.varabyte.kobweb.compose.ui.styleModifier
-import com.varabyte.kobweb.core.rememberPageContext
-import com.varabyte.kobweb.silk.components.icons.fa.*
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
-import com.varabyte.kobweb.silk.components.navigation.Link
-import com.varabyte.kobweb.silk.components.text.SpanText
-import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import org.jetbrains.compose.web.css.*
 
 /**
  * All the cards on the repositories page.
  */
 @Composable
 fun CustomRepoCardSection() {
-    generateAllRepoElements()
-}
-
-@Composable
-private fun generateAllRepoElements() {
-    val logger = Logger.get("generateAllRepoElements")
+    val logger = Logger.get("CustomRepoCardSection")
 
     SimpleGrid(numColumns(base = 1, sm = 1, md = 2, lg = 2)) {
         for (repository in RepoHandler.getAllRepos(RepositoryShowingMode.ALL)) {
             logger.info("Creating UI Element for repo: ${repository.name}")
-            createUIElementForRepo(repository)
-        }
-    }
-}
-
-@Composable
-private fun createUIElementForRepo(
-    repository: Repository,
-    roundedCornerAmount: CSSLengthOrPercentageNumericValue = 50.px,
-    borderWidth: CSSLengthNumericValue = 2.px,
-    borderStyle: LineStyle = LineStyle.Dashed,
-    borderColor: CSSColorValue = when (ColorMode.current) {
-        ColorMode.LIGHT -> Res.Color.SOFTWARE_AND_SKILLS_BOX_BORDER_COLOR_LIGHT
-        ColorMode.DARK -> Res.Color.SOFTWARE_AND_SKILLS_BORDER_COLOR_DARK
-    },
-    blendMode: MixBlendMode = MixBlendMode.Normal,
-) {
-    Box(modifier = Modifier
-        .margin(leftRight = 1.cssRem, topBottom = 2.cssRem)
-        .borderRadius(roundedCornerAmount)
-        .border(width = borderWidth, style = borderStyle, color = borderColor)
-        .styleModifier {
-            mixBlendMode(blendMode)
-        }.id("${repository.name}RepoDiv")
-    ) {
-        Column {
-            // Text above Repo Image.
-            Row(modifier = Modifier.margin(all = 2.cssRem)) {
-                FaGithub(
-                    modifier = Modifier.align(Alignment.CenterVertically).margin(right = 8.px),
-                    size = IconSize.XXL
-                )
-                Link(
-                    path = "${repository.html_url}",
-                    text = "${repository.name}",
-                    modifier = Modifier.fontFamily(FontHandler.getFont("repotext")).fontSize(90.percent)
-                )
-            }
-
-            Row(modifier = Modifier.margin(all = 2.cssRem)) {
-                SpanText("${repository.description}", modifier = Modifier.fontFamily(FontHandler.getFont("repotext")))
-            }
-
-            // Bottom links.
-            val ctx = rememberPageContext()
-            if (ProjectPageHandler.repoHasProjectPage(ctx, repository)) {
-                Link(modifier = Modifier.margin(leftRight = 2.cssRem), path = ProjectPageHandler.projectPagePathString(repository), text = "Visit Blog Post")
-            }
-        }
-
-        // Top right information about stargazers and watchers.
-        Column(Modifier.align(Alignment.TopEnd)) {
-            Row(modifier = Modifier.margin(all = 2.cssRem)) {
-                FaStar(
-                    modifier = Modifier.align(Alignment.CenterVertically).margin(right = 8.px),
-                    size = IconSize.LG,
-                    style = IconStyle.FILLED
-                )
-                SpanText(
-                    text = "${repository.stargazers_count}",
-                    modifier = Modifier.fontFamily(FontHandler.getFont("repostarwatch"))
-                )
-
-                Box(Modifier.margin(leftRight = 4.px))
-
-                FaEye(
-                    modifier = Modifier.align(Alignment.CenterVertically).margin(right = 8.px),
-                    size = IconSize.LG,
-                    style = IconStyle.FILLED
-                )
-                SpanText(
-                    text = "${repository.watchers_count}",
-                    modifier = Modifier.fontFamily(FontHandler.getFont("repostarwatch"))
-                )
-            }
+            RepoWidget(repository)
         }
     }
 }

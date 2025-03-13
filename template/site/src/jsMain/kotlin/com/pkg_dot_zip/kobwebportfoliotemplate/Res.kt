@@ -3,7 +3,7 @@ package com.pkg_dot_zip.kobwebportfoliotemplate
 import com.varabyte.kobweb.compose.ui.graphics.Color.Companion.rgb
 
 object Res {
-    private const val IMAGE_PATH = "image/"
+    private const val IMAGE_PATH = "/image/"
     const val LOGO_LIGHT = "$IMAGE_PATH/kobweb-logo.png"
     const val LOGO_DARK = "$IMAGE_PATH/kobweb-logo.png"
     const val OCTOCAT = "$IMAGE_PATH/octocat.png" // Created with https://myoctocat.com/build-your-octocat/ // USER TODO: Make sure to add your own octocat since it's really fun!
@@ -115,11 +115,6 @@ object Res {
         const val CROSSED_FLAGS = "${BASE_URL}Symbols/Crossed%20Flags.png"
         const val SNOWMAN = "${BASE_URL}Travel%20and%20places/Snowman.png"
         const val WHITE_FLAG = "${BASE_URL}Symbols/White%20Flag.png"
-    }
-
-    object Video {
-        private const val VIDEO = "video/"
-        const val CODING = "${VIDEO}10130349-sd_640_360_30fps.mp4"
     }
 
     // Colors (noted in RGB, can also take hex).
