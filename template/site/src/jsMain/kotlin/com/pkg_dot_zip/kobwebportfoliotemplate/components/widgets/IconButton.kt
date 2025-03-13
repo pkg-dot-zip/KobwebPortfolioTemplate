@@ -50,9 +50,9 @@ fun IconButtonWithHover(
 ) {
     Button(
         onClick = { onClick() },
-        Modifier.setVariable(ButtonVars.FontSize, 1.em)
+        Modifier
             .backgroundColor(Colors.Transparent)
-            .then(scaleOnHoverAnimation.toModifier()), // Make button icon size relative to parent container font size.
+            .then(scaleOnHoverAnimation.toModifier()),
     ) {
         content()
     }
