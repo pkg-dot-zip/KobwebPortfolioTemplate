@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.pkg_dot_zip.kobwebportfoliotemplate.components.sections.Footer
 import com.pkg_dot_zip.kobwebportfoliotemplate.components.sections.NavHeader
-import com.pkg_dot_zip.kobwebportfoliotemplate.components.widgets.VideoBackground
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.ColumnScope
@@ -61,6 +60,4 @@ fun PageLayout(title: String, content: @Composable ColumnScope.() -> Unit) {
         // Associate the footer with the row that will get pushed off the bottom of the page if it can't fit.
         Footer(Modifier.fillMaxWidth().gridRow(2))
     }
-
-    VideoBackground()
 }

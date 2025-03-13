@@ -5,9 +5,11 @@ import androidx.compose.runtime.Composable
 import com.pkg_dot_zip.kobwebportfoliotemplate.Res
 import com.pkg_dot_zip.kobwebportfoliotemplate.components.widgets.GlassBox
 import com.pkg_dot_zip.kobwebportfoliotemplate.components.widgets.IconButtonWithHover
+import com.pkg_dot_zip.kobwebportfoliotemplate.components.widgets.scaleOnHoverAnimation
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.FontHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.Logger
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
+import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -18,6 +20,7 @@ import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.text.SpanText
+import com.varabyte.kobweb.silk.style.toModifier
 import kotlinx.browser.window
 import org.jetbrains.compose.web.css.FlexWrap
 import org.jetbrains.compose.web.css.cssRem
@@ -80,18 +83,19 @@ fun createGlassBoxContainer(area: ToolsBoxArea) {
                     }
 
                     SimpleGrid(
-                        modifier = Modifier.padding(all = 1.cssRem),
+                        modifier = Modifier.padding(0.5.cssRem),
                         numColumns = numColumns(base = getAmountInGrid(), sm = 3, md = 3, lg = 4)
                     ) {
                         for ((url, image) in area.imageLinks) {
                             logger.trace("\tCreating image for $image")
 
-                            GlassBox(modifier = Modifier.size(65.px).margin(all = 0.6.cssRem)) {
-                                IconButtonWithHover(onClick = { ctx.router.navigateTo(url) }) {
+                            Box(modifier = Modifier.size(65.px).margin(all = 0.5.cssRem), contentAlignment = Alignment.Center) {
+                                IconButtonWithHover(onClick = { }) {
                                     AppearanceAwareImage(
                                         src = image,
                                         noChange = true,
-                                        modifier = Modifier.size(42.px).title(url),
+                                        modifier = Modifier.size(42.px).title(url).onClick { ctx.router.navigateTo(url) }.then(
+                                            scaleOnHoverAnimation.toModifier()),
                                         dropShadow = true
                                     )
                                 }
