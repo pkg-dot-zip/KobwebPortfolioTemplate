@@ -22,14 +22,12 @@ jobs:
                   java-version: "21"
                   distribution: "temurin"
 
-            - name: Install Kobweb
+            - name: Install Kobweb & Build
               run: |
                   curl -s https://get.sdkman.io | bash
                   source "$HOME/.sdkman/bin/sdkman-init.sh"
                   sdk install kobweb
 
-            - name: Build site
-              run: |
                   cd template/site
                   kobweb export --layout static
 
