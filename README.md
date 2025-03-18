@@ -140,6 +140,6 @@ See also the list of [contributors](https://github.com/pkg-dot-zip/KobwebPortfol
 
 ---
 
-I found out about Kobweb due to [this LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7150703760011366400?utm_source=share&utm_medium=member_desktop), in which Binay Shaw showcased his [Kotfolio](https://github.com/binayshaw7777/Kotfolio) project. So special thanks to him. 😁 
+I found out about Kobweb due to [this LinkedIn post](https://www.linkedin.com/feed/update/urn:li:activity:7150703760011366400?utm_source=share&utm_medium=member_desktop), in which Binay Shaw showcased his [Kotfolio](https://github.com/binayshaw7777/Kotfolio) project. So special thanks to him. 😁
 
 And lastly thanks to the entire Kobweb community, whom assisted me by taking their time to answer my questions in their [Discord server](https://discord.gg/9F4Q6r42j2). 🙏
