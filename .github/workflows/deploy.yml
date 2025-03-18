@@ -30,7 +30,7 @@ jobs:
 
             - name: Build site
               run: |
-                  cd site
+                  cd template/site
                   kobweb export --layout static
 
             - name: Setup Pages
