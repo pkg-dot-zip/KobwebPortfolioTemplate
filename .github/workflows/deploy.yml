@@ -23,6 +23,8 @@ jobs:
 
         env:
             KOBWEB_CLI_VERSION: 0.9.18
+            # FIXME: modify this to use the root directory of the repository (./)
+            ROOT_DIR: template
 
         steps:
             - uses: actions/checkout@v4
@@ -38,7 +40,7 @@ jobs:
 
             - name: Query Browser Cache ID
               id: browser-cache-id
-              run: echo "value=$(./gradlew -q :template/site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
+              run: echo "value=$(./${{ env.ROOT_DIR }}/gradlew -q :${{ env.ROOT_DIR }}/site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
 
             - name: Cache Browser Dependencies
               uses: actions/cache@v4
@@ -61,7 +63,7 @@ jobs:
 
             - name: Build site
               run: |
-                  cd template/site
+                  cd ${ROOT_DIR}/site
                   ../../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --layout static --notty
 
             - name: Setup Pages
@@ -70,7 +72,7 @@ jobs:
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: "template/site/.kobweb/site"
+                  path: "${{ env.ROOT_DIR }}/site/.kobweb/site"
 
     deploy:
         environment:
