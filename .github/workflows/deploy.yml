@@ -29,7 +29,7 @@ jobs:
                   sdk install kobweb
 
                   cd template/site
-                  kobweb export --layout static
+                  kobweb export --layout static --notty
 
             - name: Setup Pages
               uses: actions/configure-pages@v4
