@@ -10,26 +10,59 @@ permissions:
     pages: write
     id-token: write
 
+concurrency:
+    group: "pages"
+    cancel-in-progress: true
+
 jobs:
     build:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: bash
+
+        env:
+            KOBWEB_CLI_VERSION: 0.9.18
+
         steps:
             - uses: actions/checkout@v4
 
             - name: Set up JDK 17
               uses: actions/setup-java@v4
               with:
-                  java-version: "21"
+                  java-version: "17"
                   distribution: "temurin"
 
-            - name: Install Kobweb & Build
-              run: |
-                  curl -s https://get.sdkman.io | bash
-                  source "$HOME/.sdkman/bin/sdkman-init.sh"
-                  sdk install kobweb
+            - name: Setup Gradle
+              uses: gradle/actions/setup-gradle@v4
 
+            - name: Query Browser Cache ID
+              id: browser-cache-id
+              run: echo "value=$(./gradlew -q :template/site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
+
+            - name: Cache Browser Dependencies
+              uses: actions/cache@v4
+              id: playwright-cache
+              with:
+                  path: ~/.cache/ms-playwright
+                  key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
+
+            - name: Fetch kobweb
+              uses: robinraju/release-downloader@v1.10
+              with:
+                  repository: "varabyte/kobweb-cli"
+                  tag: "v${{ env.KOBWEB_CLI_VERSION }}"
+                  fileName: "kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip"
+                  tarBall: false
+                  zipBall: false
+
+            - name: Unzip kobweb
+              run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
+
+            - name: Build site
+              run: |
                   cd template/site
-                  kobweb export --layout static --notty
+                  ../../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --layout static --notty
 
             - name: Setup Pages
               uses: actions/configure-pages@v4
