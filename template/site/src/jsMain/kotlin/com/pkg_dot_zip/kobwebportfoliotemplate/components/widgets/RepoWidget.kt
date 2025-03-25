@@ -3,7 +3,7 @@ package com.pkg_dot_zip.kobwebportfoliotemplate.components.widgets
 import androidx.compose.runtime.Composable
 import com.pkg_dot_zip.kobwebportfoliotemplate.Res
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.FontHandler
-import com.pkg_dot_zip.kobwebportfoliotemplate.util.ProjectPageHandler
+import com.pkg_dot_zip.kobwebportfoliotemplate.util.blogPost.ProjectPageHandler
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.Repository
 import com.varabyte.kobweb.compose.css.*
 import com.varabyte.kobweb.compose.foundation.layout.Box
