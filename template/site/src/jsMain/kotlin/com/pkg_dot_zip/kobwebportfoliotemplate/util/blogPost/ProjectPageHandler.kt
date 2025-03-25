@@ -1,5 +1,6 @@
-package com.pkg_dot_zip.kobwebportfoliotemplate.util
+package com.pkg_dot_zip.kobwebportfoliotemplate.util.blogPost
 
+import com.pkg_dot_zip.kobwebportfoliotemplate.util.Logger
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.extensions.toKebabCase
 import com.pkg_dot_zip.kobwebportfoliotemplate.util.repo.Repository
 import com.varabyte.kobweb.core.PageContext
@@ -28,7 +29,7 @@ object ProjectPageHandler {
      */
     fun projectPagePathString(repo: Repository): String = "/projects/" + repo.name?.toKebabCase()
 
-    private fun getProjectPages(ctx: PageContext): Sequence<String> {
+    fun getProjectPages(ctx: PageContext): Sequence<String> {
         return ctx.router.routes.map { it.path }.filter { it.startsWith("/projects/") }
     }
 }

@@ -50,6 +50,7 @@ private fun MenuItems() {
     NavLink("/", "Home")
     NavLink("/about", "About")
     NavLink("/repo-page", "Repositories")
+    NavLink("/blog-index", "Blog Posts")
 }
 
 @Composable
