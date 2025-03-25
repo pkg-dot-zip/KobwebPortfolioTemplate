@@ -22,18 +22,17 @@ data class Repository(
 ) {
     companion object {
         fun cleanParse(repository: Repository): Repository {
-            if (repository.id != "null") repository.id = repository.id!!.removeSurrounding("\"")
-            if (repository.node_id != "null") repository.node_id =
-                repository.node_id!!.removeSurrounding("\"")
-            if (repository.name != "null") repository.name = repository.name!!.removeSurrounding("\"")
-            if (repository.full_name != "null") repository.full_name =
-                repository.full_name!!.removeSurrounding("\"")
-            if (repository.html_url != "null") repository.html_url =
-                repository.html_url!!.removeSurrounding("\"")
-            if (repository.description != "null") repository.description =
-                repository.description!!.removeSurrounding("\"")
+            repository.id = repository.id.clean()
+            repository.node_id = repository.node_id.clean()
+            repository.name = repository.name.clean()
+            repository.full_name = repository.full_name.clean()
+            repository.html_url = repository.html_url.clean()
+            repository.description = repository.description.clean()
             return repository
         }
+
+        private fun String?.clean(): String? =
+            if (this != "null") this?.removeSurrounding("\"") else this
     }
 
     data class License(
