@@ -1,0 +1,86 @@
+name: Deploy to GitHub Pages
+
+on:
+    push:
+        branches: [master]
+    workflow_dispatch:
+
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+concurrency:
+    group: "pages"
+    cancel-in-progress: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: bash
+
+        env:
+            KOBWEB_CLI_VERSION: 0.9.18
+            # FIXME: modify this to use the root directory of the repository (./)
+            ROOT_DIR: template
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Set up JDK
+              uses: actions/setup-java@v4
+              with:
+                  java-version: "17"
+                  distribution: "temurin"
+
+            - name: Setup Gradle
+              uses: gradle/actions/setup-gradle@v4
+
+            - name: Query Browser Cache ID
+              id: browser-cache-id
+              run: echo "value=$(./${{ env.ROOT_DIR }}/gradlew -q :${{ env.ROOT_DIR }}/site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
+
+            - name: Cache Browser Dependencies
+              uses: actions/cache@v4
+              id: playwright-cache
+              with:
+                  path: ~/.cache/ms-playwright
+                  key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
+
+            - name: Fetch kobweb
+              uses: robinraju/release-downloader@v1.10
+              with:
+                  repository: "varabyte/kobweb-cli"
+                  tag: "v${{ env.KOBWEB_CLI_VERSION }}"
+                  fileName: "kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip"
+                  tarBall: false
+                  zipBall: false
+
+            - name: Unzip kobweb
+              run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
+
+            - name: Build site
+              run: |
+                  cd ${ROOT_DIR}/site
+                  ../../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --layout static --notty
+
+            - name: Setup Pages
+              uses: actions/configure-pages@v4
+
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                  path: "${{ env.ROOT_DIR }}/site/.kobweb/site"
+
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
