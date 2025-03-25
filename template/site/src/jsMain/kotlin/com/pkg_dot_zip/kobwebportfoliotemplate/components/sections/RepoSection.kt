@@ -73,7 +73,7 @@ private fun createUIElementForRepo(repository: Repository) {
             size = IconSize.XXL
         )
         Link(
-            path = "${repository.html_url}",
+            path = "${repository.htmlUrl}",
             text = "${repository.name}",
             modifier = Modifier.fontFamily(FontHandler.getFont("repotext"))
         )
