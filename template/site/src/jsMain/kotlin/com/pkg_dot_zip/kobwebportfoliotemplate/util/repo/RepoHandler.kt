@@ -10,12 +10,12 @@ object RepoHandler {
     // USER TODO: Put your own username(s) here!
     private val users: Array<String> = arrayOf(
         "varabyte",
-//        "JetBrains"
+//        "JetBrains",
     )
 
     // USER TODO: Put your own repos here. Format is 'Owner/Repo'
     private val specifiedRepos: Array<String> = arrayOf(
-//        "square/okhttp"
+        "square/okhttp"
     )
 
     @Composable
@@ -36,7 +36,7 @@ object RepoHandler {
 
             // Check if there are even 3 repositories at all. If not, we create a top 0, 1 or 2.
             RepositoryShowingMode.MOST_STARRED ->
-                list.sortedByDescending { repository -> repository.stargazers_count }
+                list.sortedByDescending { repository -> repository.stargazersCount }
                     .subList(0, if (list.size < 3) list.size else 3)
 
             RepositoryShowingMode.NO_FORKED -> list.filter { repository -> !repository.fork!! }
@@ -58,7 +58,7 @@ object RepoHandler {
                 jsonResponse = window.fetch(Request("https://api.github.com/repos/${repoToAdd}")).await().text().await()
             }
 
-            if (jsonResponse != null) repos.add(RepoParser.parseRepoFromJson(jsonResponse!!))
+            if (jsonResponse != null) repos.add(RepoParser.parseRepoFromJsonString(jsonResponse!!))
         }
 
         return repos
@@ -90,7 +90,7 @@ object RepoHandler {
      * @param listToSort The list to sort.
      */
     private fun sortRepoList(listToSort: MutableList<Repository>): MutableList<Repository> = listToSort.apply {
-        sortByDescending(Repository::stargazers_count)
+        sortByDescending(Repository::stargazersCount)
     }
 
     private fun shouldSkipRepo(repository: Repository): Boolean {
