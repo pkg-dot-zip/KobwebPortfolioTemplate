@@ -66,16 +66,6 @@ fun RepoWidget(
                         text = "${repository.stargazers_count}",
                         modifier = Modifier.fontFamily(FontHandler.getFont("repostarwatch"))
                     )
-
-                    FaEye(
-                        modifier = Modifier.margin(leftRight = 8.px),
-                        size = IconSize.LG,
-                        style = IconStyle.FILLED
-                    )
-                    SpanText(
-                        text = "${repository.watchers_count}",
-                        modifier = Modifier.fontFamily(FontHandler.getFont("repostarwatch"))
-                    )
                 }
             }
 

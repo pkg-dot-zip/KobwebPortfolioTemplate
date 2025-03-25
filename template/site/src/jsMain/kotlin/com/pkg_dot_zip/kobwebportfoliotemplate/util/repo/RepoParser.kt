@@ -40,7 +40,7 @@ object RepoParser {
             full_name = jsonElement.jsonObject["full_name"]!!.jsonPrimitive.toString(),
             archived = jsonElement.jsonObject["archived"]!!.jsonPrimitive.boolean,
             open_issues = jsonElement.jsonObject["open_issues"]!!.jsonPrimitive.int,
-            watchers_count = jsonElement.jsonObject["watchers_count"]!!.jsonPrimitive.int,
+            watchers_count = jsonElement.jsonObject["subscribers_count"]?.jsonPrimitive?.int, // NOTE: Only available when retrieving from repo specific. Not in repo list of user.
             stargazers_count = jsonElement.jsonObject["stargazers_count"]!!.jsonPrimitive.int,
             license = license,
             fork = jsonElement.jsonObject["fork"]!!.jsonPrimitive.boolean,
