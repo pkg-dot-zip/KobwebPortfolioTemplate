@@ -1,4 +1,4 @@
-<h3 align="center">Kotweb Portfolio Template</h3>
+<h3 align="center">Kobweb Portfolio Template</h3>
 
 <div align="center">
 
