@@ -64,7 +64,7 @@ fun RepoImage(
     },
     blendMode: MixBlendMode = MixBlendMode.Normal,
 ) {
-    var imageSource = "https://socialify.git.ci/${repository.full_name!!}/image?"
+    var imageSource = "https://socialify.git.ci/${repository.fullName!!}/image?"
     imageSource += "language=${showLanguage.toInt()}"
     imageSource += "&owner=${showOwner.toInt()}"
     imageSource += "&name=${showName.toInt()}"
@@ -89,7 +89,7 @@ fun RepoImage(
         Image(
             imageSource,
             modifier = Modifier.onClick {
-                context.router.navigateTo(repository.html_url!!)
+                context.router.navigateTo(repository.htmlUrl!!)
             }
                 .fillMaxWidth()
                 .fillMaxHeight()

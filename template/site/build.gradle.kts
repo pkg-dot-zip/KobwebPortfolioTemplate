@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kobweb.application)
     alias(libs.plugins.kobwebx.markdown)
+    kotlin("plugin.serialization") version "1.8.0"
 }
 
 group = "com.pkg_dot_zip.kobwebportfoliotemplate"

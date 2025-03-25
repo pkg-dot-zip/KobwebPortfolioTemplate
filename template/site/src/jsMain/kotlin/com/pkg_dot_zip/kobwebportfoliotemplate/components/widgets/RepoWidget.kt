@@ -50,7 +50,7 @@ fun RepoWidget(
                     size = IconSize.XXL
                 )
                 Link(
-                    path = "${repository.html_url}",
+                    path = "${repository.htmlUrl}",
                     text = "${repository.name}",
                     modifier = Modifier.fontFamily(FontHandler.getFont("repotext")).fontSize(90.percent).textOverflow(
                         TextOverflow.Ellipsis).overflow(Overflow.Hidden).flexGrow(1)
@@ -63,24 +63,17 @@ fun RepoWidget(
                         style = IconStyle.FILLED
                     )
                     SpanText(
-                        text = "${repository.stargazers_count}",
-                        modifier = Modifier.fontFamily(FontHandler.getFont("repostarwatch"))
-                    )
-
-                    FaEye(
-                        modifier = Modifier.margin(leftRight = 8.px),
-                        size = IconSize.LG,
-                        style = IconStyle.FILLED
-                    )
-                    SpanText(
-                        text = "${repository.watchers_count}",
+                        text = "${repository.stargazersCount}",
                         modifier = Modifier.fontFamily(FontHandler.getFont("repostarwatch"))
                     )
                 }
             }
 
-            SpanText(repository.description!!, modifier = Modifier.fontFamily(FontHandler.getFont("repotext")).textAlign(
-                TextAlign.Center))
+            if (repository.description != null) {
+                SpanText(
+                    repository.description!!, modifier = Modifier.fontFamily(FontHandler.getFont("repotext")).textAlign(
+                    TextAlign.Center))
+            }
 
             // Bottom links.
             val ctx = rememberPageContext()
